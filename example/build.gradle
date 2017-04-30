@@ -1,0 +1,15 @@
+
+dependencies {
+	compile project(':offline-integration')
+	compileOnly 'javax:javaee-api:7.0'
+    compile 'org.springframework:spring-orm:4.3.6.RELEASE'
+	compile 'org.springframework:spring-context:4.3.6.RELEASE'
+	compile 'org.hibernate:hibernate-core:5.2.10.Final'
+	compile 'com.h2database:h2:1.4.195'
+	compile 'mysql:mysql-connector-java:5.1.13'
+	
+	testCompile 'junit:junit:4.12'
+	testCompile 'org.assertj:assertj-core:3.6.2'
+	testCompile 'org.springframework:spring-test:4.3.6.RELEASE'
+}
+
