@@ -27,18 +27,18 @@ public abstract class SpringContextJPAConfiguration {
 
 	// Spring JPA Property Values
 	public static final String JPAVendorAdapterClassName = "org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter";
-	
+
 
 	public abstract String getDataSourceDriverClassName();
-	
+
 	public abstract String getDataSourceURL();
 
 	public abstract String getDataSourceUsername();
-	
+
 	public abstract String getDataSourcePassword();
-	
+
 	public abstract String getDialectPropertyClassName();
-	
+
 	public abstract String[] getEntityPackagesToScan();
 
 	@Bean
@@ -50,14 +50,14 @@ public abstract class SpringContextJPAConfiguration {
 		entityManagerFactory.setJpaVendorAdapter(vendorAdapter());
 		return entityManagerFactory;
 	}
-	
+
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory){
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(entityManagerFactory);
 		return transactionManager;
 	}
-	 
+
 	protected DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(getDataSourceDriverClassName());
@@ -66,18 +66,18 @@ public abstract class SpringContextJPAConfiguration {
 		dataSource.setPassword(getDataSourcePassword());
 		return dataSource;
 	}
-	
+
 	protected JpaVendorAdapter vendorAdapter() {
 		JpaVendorAdapter vendorAdapter = null;
-		
+
 		try {
 			vendorAdapter = (JpaVendorAdapter) Class.forName(JPAVendorAdapterClassName).newInstance();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 		}
-		
+
 		return vendorAdapter;
 	}
-	
+
 	protected Properties jpaProperties() {
 		Properties properties = new Properties();
 		properties.setProperty(HibernateDialectPropertyName, getDialectPropertyClassName());
