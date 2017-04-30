@@ -1,4 +1,6 @@
 
+version = 0.1
+
 dependencies {
 	compileOnly 'javax:javaee-api:7.0'
     compile 'org.springframework:spring-orm:4.3.6.RELEASE'
