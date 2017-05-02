@@ -1,9 +1,15 @@
+apply plugin: 'java-library'
+apply plugin: 'maven'
 
+group = 'com.karlnosworthy'
 version = 0.2
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 dependencies {
-	compileOnly 'javax:javaee-api:7.0'
-    compile 'org.springframework:spring-orm:4.3.6.RELEASE'
-	compile 'org.springframework:spring-context:4.3.6.RELEASE'
+	implementation 'javax:javaee-api:7.0'
+    api 'org.springframework:spring-orm:4.3.6.RELEASE'
+	api 'org.springframework:spring-context:4.3.6.RELEASE'
 }
 
