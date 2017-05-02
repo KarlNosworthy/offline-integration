@@ -10,8 +10,7 @@ By default an in-memory H2 database instance is used but the configuration can e
 
 ## Getting Started
 
-Implement the _OfflineIntegrationSupport_ interface, extend the provided instance of _OfflineIntegrationConfiguration_ and provide any persistence adjustments 
-or bean references you need.
+Implement the _OfflineIntegrationSupport_ interface, extend the provided instance of _OfflineIntegrationConfiguration_ and provide any persistence adjustments (including overriding _getEntityPackagesToScan_) or bean references you need.
 
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,6 +19,11 @@ public class MyIntegrationTest implements OfflineIntegrationSupport {
 
   @Configuration
   public static MyIntegrationTestConfiguration extends OfflineIntegrationConfiguration {
+  
+    @Override
+    public String[] getEntityPackagesToScan() {
+        return new String[] {"com.mypackage.model"};
+    }
       ....
   }
 }
@@ -102,3 +106,8 @@ Override `getDataSourceDriverClassName`, `getDialectPropertyClassName` and `getD
       return "jdbc:mysql://localhost:3306/integration_testing";
   }
 ```
+
+## Sample code
+
+A full example of utilising this framework both for testing and as a basis to configure a spring-based app is provided in the this repository.
+
