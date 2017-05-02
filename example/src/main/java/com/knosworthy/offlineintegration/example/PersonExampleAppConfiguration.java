@@ -42,8 +42,8 @@ public class PersonExampleAppConfiguration extends SpringContextJPAConfiguration
     }
 
     @Override
-    protected Properties jpaProperties() {
-        Properties properties = super.jpaProperties();
+    protected Properties getJPAProperties() {
+        Properties properties = super.getJPAProperties();
         properties.setProperty(HibernateImportFilesPropertyName, "person_app_import_data.sql");
         return properties;
     }

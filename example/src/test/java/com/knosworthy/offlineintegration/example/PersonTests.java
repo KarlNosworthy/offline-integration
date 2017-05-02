@@ -22,7 +22,7 @@
  */
 package com.knosworthy.offlineintegration.example;
 
-import com.knosworthy.offlineintegration.OfflineIntegration;
+import com.knosworthy.offlineintegration.OfflineIntegrationSupport;
 import com.knosworthy.offlineintegration.example.Person;
 import com.knosworthy.offlineintegration.example.PersonDAO;
 import com.knosworthy.offlineintegration.example.PersonService;
@@ -42,14 +42,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader=AnnotationConfigContextLoader.class)
-public class PersonTests implements OfflineIntegration {
+public class PersonTests implements OfflineIntegrationSupport {
 
 	@Configuration
 	public static class PersonTestsConfiguration extends OfflineIntegrationConfiguration {
 
 		@Override
-		protected Properties jpaProperties() {
-			Properties properties = super.jpaProperties();
+		protected Properties getJPAProperties() {
+			Properties properties = super.getJPAProperties();
 			properties.setProperty(HibernateImportFilesPropertyName, "person_import_data.sql");
 			return properties;
 		}

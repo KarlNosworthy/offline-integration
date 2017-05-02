@@ -67,7 +67,7 @@ public abstract class SpringContextJPAConfiguration {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactory.setPackagesToScan(getEntityPackagesToScan());
-		entityManagerFactory.setJpaProperties(jpaProperties());
+		entityManagerFactory.setJpaProperties(getJPAProperties());
 		entityManagerFactory.setDataSource(dataSource());
 		entityManagerFactory.setJpaVendorAdapter(vendorAdapter());
 		return entityManagerFactory;
@@ -100,7 +100,7 @@ public abstract class SpringContextJPAConfiguration {
 		return vendorAdapter;
 	}
 
-	protected Properties jpaProperties() {
+	protected Properties getJPAProperties() {
 		Properties properties = new Properties();
 		properties.setProperty(HibernateDialectPropertyName, getDialectPropertyClassName());
 		properties.setProperty(HibernateDDLAutoPropertyName, "create");

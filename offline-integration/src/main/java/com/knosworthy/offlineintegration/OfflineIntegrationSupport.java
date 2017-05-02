@@ -24,10 +24,7 @@ package com.knosworthy.offlineintegration;
 
 import org.springframework.context.annotation.Configuration;
 
-/**
- *
- */
-public interface OfflineIntegration {
+public interface OfflineIntegrationSupport {
 	
 	@Configuration
 	public static class OfflineIntegrationConfiguration extends SpringContextJPAConfiguration {
