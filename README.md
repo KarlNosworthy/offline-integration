@@ -3,7 +3,6 @@ A micro framework to make it easier to perform offline / local integration testi
 
 [![Build Status](https://travis-ci.org/KarlNosworthy/offline-integration-testing.svg?branch=master)](https://travis-ci.org/KarlNosworthy/offline-integration-testing)
 [![GitHub release](https://img.shields.io/github/release/KarlNosworthy/offline-integration.svg)]()
-[![Bintray](https://img.shields.io/bintray/v/karlnosworthy/java-libraries/offline-integration.svg)](https://bintray.com/karlnosworthy/java-libraries/offline-integration/_latestVersion)
 
 ## Introduction
 By providing the ability to simplify swapping out of the JPA based persistence configuration, a Data Access Layer and its objects can be tested quickly and easily to ensure that criteria and any other SQL/JPQL/HQL logic is performing as expected.
