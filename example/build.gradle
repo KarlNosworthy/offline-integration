@@ -14,4 +14,3 @@ dependencies {
 	testCompile 'org.assertj:assertj-core:2.6.0'
 	testCompile 'org.springframework:spring-test:4.3.6.RELEASE'
 }
-

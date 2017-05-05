@@ -20,57 +20,34 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.knosworthy.offlineintegration.example;
+package com.karlnosworthy.offlineintegration.example;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
-@Entity
-public class Person {
+public class PersonDAO {
+	
+	@PersistenceContext
+	private EntityManager entityManager;
 
-	@Id
-	private Long id;
-	private String firstName;
-	private String middleName;
-	private String lastName;
 
-	public Person() {
+	public List<Person> getAll() {
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Person> criteriaQuery = criteriaBuilder.createQuery(Person.class);
+
+		Root<Person> root = criteriaQuery.from(Person.class);
+		criteriaQuery.select(root);
+		
+		TypedQuery<Person> query = entityManager.createQuery(criteriaQuery);
+		return query.getResultList();
 	}
 
-	public Person(String firstName, String lastName) {
-		this(firstName, null, lastName);
-	}
-
-	public Person(String firstName, String middleName, String lastName) {
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public String getMiddleName() {
-		return middleName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String toString() {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append(firstName);
-
-		if (middleName != null && !middleName.isEmpty()) {
-			buffer.append(" " +middleName);
-		}
-		buffer.append(" " + lastName);
-		return buffer.toString();
+	public Person getPerson(Long id) {
+		return entityManager.find(Person.class, id);
 	}
 }

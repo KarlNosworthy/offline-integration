@@ -1,11 +1,19 @@
 apply plugin: 'java-library'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 group = 'com.karlnosworthy'
-version = 0.2
+version = '0.3'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+}
 
 dependencies {
 	implementation 'javax:javaee-api:7.0'
@@ -13,3 +21,24 @@ dependencies {
 	api 'org.springframework:spring-context:4.3.6.RELEASE'
 }
 
+jar {
+	jar {
+		manifest {
+			attributes("Implementation-Title": "Offline Integration",
+					   "Implementation-Version": version,
+			 		   "Implementation-Vendor": group)
+		}
+	}
+	into 'META-INF', {
+		from '../LICENSE'
+	}
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives sourcesJar
+}

@@ -20,32 +20,57 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.knosworthy.offlineintegration.example;
+package com.karlnosworthy.offlineintegration.example;
 
-import org.springframework.transaction.annotation.Transactional;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-import java.util.List;
+@Entity
+public class Person {
 
-public class PersonService {
-	
-	private PersonDAO personDAO;
+	@Id
+	private Long id;
+	private String firstName;
+	private String middleName;
+	private String lastName;
 
-
-	public PersonService(PersonDAO personDAO) {
-		this.personDAO = personDAO;
+	public Person() {
 	}
 
-	@Transactional(readOnly = true)
-	public List<Person> getAll() {
-		return personDAO.getAll();
+	public Person(String firstName, String lastName) {
+		this(firstName, null, lastName);
 	}
 
-	@Transactional(readOnly = true)
-	public Person getPerson(Long id) {
-		Person person = null;
-		if (id != null && id > 0) {
-			person = personDAO.getPerson(id);
+	public Person(String firstName, String middleName, String lastName) {
+		this.firstName = firstName;
+		this.middleName = middleName;
+		this.lastName = lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String toString() {
+		StringBuilder buffer = new StringBuilder();
+		buffer.append(firstName);
+
+		if (middleName != null && !middleName.isEmpty()) {
+			buffer.append(" " +middleName);
 		}
-		return person;
+		buffer.append(" " + lastName);
+		return buffer.toString();
 	}
 }

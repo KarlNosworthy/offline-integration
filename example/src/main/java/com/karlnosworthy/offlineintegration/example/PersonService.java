@@ -20,47 +20,32 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.knosworthy.offlineintegration;
+package com.karlnosworthy.offlineintegration.example;
 
-import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface OfflineIntegrationSupport {
+import java.util.List;
+
+public class PersonService {
 	
-	@Configuration
-	public static class OfflineIntegrationConfiguration extends SpringContextJPAConfiguration {
+	private PersonDAO personDAO;
 
-		private static final String DefaultOfflineIntegrationDialectClassName = "org.hibernate.dialect.H2Dialect";
-		private static final String DefaultOfflineIntegrationDataSourceDriverName = "org.h2.Driver";
-		private static final String DefaultOfflineIntegrationDataSourceURL = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1";
 
-		@Override
-		public String getDataSourceDriverClassName() {
-			return DefaultOfflineIntegrationDataSourceDriverName;
+	public PersonService(PersonDAO personDAO) {
+		this.personDAO = personDAO;
+	}
+
+	@Transactional(readOnly = true)
+	public List<Person> getAll() {
+		return personDAO.getAll();
+	}
+
+	@Transactional(readOnly = true)
+	public Person getPerson(Long id) {
+		Person person = null;
+		if (id != null && id > 0) {
+			person = personDAO.getPerson(id);
 		}
-
-		@Override
-		public String getDataSourceURL() {
-			return DefaultOfflineIntegrationDataSourceURL;
-		}
-
-		@Override
-		public String getDataSourceUsername() {
-			return "";
-		}
-
-		@Override
-		public String getDataSourcePassword() {
-			return "";
-		}
-
-		@Override
-		public String[] getEntityPackagesToScan() {
-			return new String[] {""};
-		}
-
-		@Override
-		public String getDialectPropertyClassName() {
-			return DefaultOfflineIntegrationDialectClassName;
-		}
+		return person;
 	}
 }

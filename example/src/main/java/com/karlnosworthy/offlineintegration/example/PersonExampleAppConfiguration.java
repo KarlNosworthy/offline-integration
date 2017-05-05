@@ -20,9 +20,9 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.knosworthy.offlineintegration.example;
+package com.karlnosworthy.offlineintegration.example;
 
-import com.knosworthy.offlineintegration.SpringContextJPAConfiguration;
+import com.karlnosworthy.offlineintegration.SpringContextJPAConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -75,6 +75,6 @@ public class PersonExampleAppConfiguration extends SpringContextJPAConfiguration
 
     @Override
     public String[] getEntityPackagesToScan() {
-        return new String[] {"com.knosworthy.offlineintegration.example"};
+        return new String[] {"com.karlnosworthy.offlineintegration.example"};
     }
 }
