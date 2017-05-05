@@ -1,7 +1,7 @@
 # Offline Integration Testing
 A micro framework to make it easier to perform offline / local integration testing when using Spring and Hibernate within a Java backend.
 
-[![Build Status](https://travis-ci.org/KarlNosworthy/offline-integration-testing.svg?branch=master)](https://travis-ci.org/KarlNosworthy/offline-integration-testing)
+[![Build Status](https://travis-ci.org/KarlNosworthy/offline-integration-testing.svg?branch=master)](https://travis-ci.org/KarlNosworthy/offline-integration)
 [![GitHub release](https://img.shields.io/github/release/KarlNosworthy/offline-integration.svg)]()
 
 ## Introduction
