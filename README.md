@@ -1,14 +1,14 @@
 # Offline Integration Testing
-A micro framework to make it easier to perform offline / local integration testing when using Spring and Hibernate within a Java backend.
+A micro framework to make it easier to perform offline / local integration testing when using [Spring](http://spring.io) and [Hibernate](http://hibernate.org) within a Java backend.
 
-[![Build Status](https://travis-ci.org/KarlNosworthy/offline-integration-testing.svg?branch=master)](https://travis-ci.org/KarlNosworthy/offline-integration)
+[![Build Status](https://travis-ci.org/KarlNosworthy/offline-integration.svg?branch=master)](https://travis-ci.org/KarlNosworthy/offline-integration)
 [![GitHub release](https://img.shields.io/github/release/KarlNosworthy/offline-integration.svg)]()
 
 ## Introduction
 By providing the ability to simplify swapping out of the JPA based persistence configuration, a Data Access Layer and its objects can be tested quickly and easily to ensure that criteria and any other SQL/JPQL/HQL logic is performing as expected.
 This is achieved by utilising an in-memory database in order to run integration tests through a lightweight, low footprint, local database.
 
-By default an in-memory H2 database instance is used but the configuration can easily be adjusted to fit requirements.
+By default an in-memory [H2 database](http://www.h2database.com) instance is used but the configuration can easily be adjusted to fit requirements.
 
 
 ## Getting Started
